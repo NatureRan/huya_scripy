@@ -32,18 +32,30 @@ if __name__ == '__main__':
                     continue
                 data_id = data_id_now
                 div = li.find_element(By.TAG_NAME, 'div')
-                print('data_id:' + str(data_id) + div.text)
+                # print('data_id:' + str(data_id) + div.text)
                 div_attr = div.get_attribute('class')
-                print(div_attr)
+                # print(div_attr)
                 # div往下解析每一条弹幕内容
                 if div_attr == 'tit-h-send':
-                    print('这是一条礼物')
+                    # print('这是一条礼物')
+                    pass
                 elif div_attr == 'msg-normal':
-                    print('这是一条文字弹幕')
+                    # 找到用户元素
+                    text = li.text
+                    msg = text.split(':')
+                    print('普通观众弹幕#用户:' + msg[0] + ' 弹幕:' + msg[1])
                 elif div_attr == 'msg-nobleEnter':
-                    print('这是观众进入直播间信息')
+                    # print('老爷进入直播间信息')
+                    pass
+                elif div_attr.startswith('msg-nobleSpeak'):
+                    text = li.text
+                    msg = text.split(':')
+                    print('老爷弹幕#用户:' + msg[0] + ' 弹幕:' + msg[1])
+                    pass
                 else:
-                    print("消息类型未知")
+                    # print("消息类型未知:" + div_attr + li.text)
+                    # input()
+                    pass
             except Exception as e:
                 logging.warning("异常：" + str(e))
-            print('----------------------------------------------')
+            # print('----------------------------------------------')
