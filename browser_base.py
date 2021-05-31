@@ -25,5 +25,5 @@ class HuYaBrowser(object):
         print('浏览器退出')
         self.driver.quit()
 
-    def get_current_page_source(self):
+    def get_current_page_source(self) -> str:
         return self.driver.page_source
